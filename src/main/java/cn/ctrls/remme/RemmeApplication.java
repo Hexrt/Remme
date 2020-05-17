@@ -1,4 +1,4 @@
-package cn.ctrls.remme.remme;
+package cn.ctrls.remme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
