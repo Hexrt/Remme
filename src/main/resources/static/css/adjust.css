@@ -1,0 +1,99 @@
+body{
+    /*background-color: whitesmoke;*/
+}
+
+#content{
+    /*background-color: gray;*/
+    height: 580px;
+    padding-left: 2%;
+}
+
+#content-head{
+    height: 8%;
+}
+
+.time-element{
+    float: right;
+}
+
+#time-controller{
+    /*background-color: rebeccapurple;*/
+}
+
+#task-list{
+    /*background-color: green;*/
+    max-height: 86%;
+}
+
+#task-content{
+    /*background-color: black;*/
+}
+
+#task-memo{
+    /*background-color: white;*/
+}
+
+/**特殊调整**/
+/*这是导航栏目*/
+.time-controller{
+
+}
+
+/*箭头*/
+div[id$="arr"]{
+    height: 22px;
+    width: 13px;
+    background-color: #d5d5d5;
+    margin-top: 7px;
+    display: none;
+}
+div[id$="arr"]:hover{
+    cursor: pointer;
+}
+#time-left-arr{
+    border-radius: 50% 0 0 50%;
+    float: left;
+}
+#time-right-arr{
+    border-radius: 0 50% 50% 0;
+    float: right;
+    margin-right: 1px;
+}
+#time-controller:hover .time-left-arr{
+    display: block;
+}
+#time-controller:hover .time-right-arr{
+    display: block;
+}
+
+/**任务列表**/
+.task{
+    margin-left: 3px;
+    margin-top: 6px;
+}
+
+.task-time{
+    float: right;
+}
+
+/**东西**/
+.simple-des{
+    content: "Example";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #9da0a4;
+    border-radius: 4px 0 4px 0;
+}
+
+.info-vector{
+    margin: -1px -16px;
+    padding: 22px;
+}
+
+/**任务控制栏目**/
