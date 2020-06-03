@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class IndexController {
     @GetMapping("/")
+
     public String index(HttpServletRequest httpServletRequest,
                         @RequestParam(name = "action",defaultValue = "none") String action,
                         @RequestParam(name = "id", defaultValue = "none") String taskId){
