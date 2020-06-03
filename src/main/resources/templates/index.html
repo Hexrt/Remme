@@ -7,178 +7,30 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel = "stylesheet" href="css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="css/adjust.css">
+    <link rel="stylesheet" href="css/editormd.min.css" />
+    <link rel="stylesheet" href="css/editormd.preview.css" />
+    <script src="js/jquery-3.5.0.min.js" type="application/javascript"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="js/editormd.min.js"></script>
+    <script src="js/lib/marked.min.js"></script>
+    <script src="js/lib/prettify.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var taskContent = editormd.markdownToHTML("task-content", {
+                path : "js/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
+            });
+        });
+        $(function() {
+            var taskMemo = editormd.markdownToHTML("task-memo", {
+                path : "js/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
+            });
+        });
+    </script>
 </head>
 <body>
-    <div id="header">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Remme</span>
-                    </button>
-                    <a class="navbar-brand" href="#">Remme</a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <form class="navbar-form navbar-left">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="任务关键字">
-                        </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li th:if="${session.user==null}">
-                            <a href="https://github.com/login/oauth/authorize?client_id=040211635f64ad8b289d&redirect_url=localhost:8080/callback&scope=user&state=1">登录</a>
-                        </li>
-                        <li th:if="${session.user!=null}">
-                            <a th:text="${session.user.getLogin()}"></a>
-                        </li>
-                        <li class="dropdown" th:if="${session.user!=null}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">消息</a></li>
-                                <li><a href="#">资料</a></li>
-                                <li><a href="#">设置</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">退出</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-    </div>
-
-    <div class="container">
-        <div id="content" class="row">
-
-            <div id="content-head" class="col-md-12">
-                <div id="task-time" class="col-md-3 left">
-                    今天
-                </div>
-                <div id="time-controller" class="col-md-6 btn-group" data-toggle="buttons-radio">
-                    <div id="time-left-arr"><i></i></div>
-                    <a href="#" class="btn btn-primary time-element">前天</a>
-                    <a href="#" class="btn btn-primary time-element">昨天</a>
-                    <a href="#" class="btn btn-primary time-element">今天</a>
-                    <a href="#" class="btn btn-primary time-element">明天</a>
-                    <a href="#" class="btn btn-primary time-element">后天</a>
-                    <a id="time-right-arr"><i></i></a>
-                </div>
-            </div>
-
-            <div id="task-list" class="col-md-4 list-group pre-scrollable">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task active">
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="task-time">3 days ago</small>
-                        <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task">
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="task-time">3 days ago</small>
-                        <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task">
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="task-time">3 days ago</small>
-                        <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task">
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="task-time">3 days ago</small>
-                        <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task">
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="task-time">3 days ago</small>
-                        <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task">
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="task-time">3 days ago</small>
-                        <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task">
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="task-time">3 days ago</small>
-                        <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                </a>
-            </div>
-            <div class="container col-md-8">
-
-                <div id="task-content" class="col-md-12">
-                    <div class="form-group">
-                        <label for="task-content" class="simple-des">任务详情</label>
-                        <textarea class="form-control info-vector" rows="9">
-                            i哦就看见分厘卡世界各地卢浮宫
-                            给对方临近高考理科的fjgldfjgk 立刻就美丽的风景共i、
-                            哦i二鞠躬i二极管偶尔给joe
-                            欸哦人家给哦人er 而根据配打发打发给
-                        </textarea>
-                    </div>
-                </div>
-                <div id = "endTime" class="input-group mb-3 col-md-3">
-                    <input type="text" class="form-control" placeholder="2020年5月20日09点10分" aria-label="endTime" aria-describedby="basic-addon1">
-                </div>
-                <div id="task-controller col-md-7">
-                    <a href = "#" type="button" class="btn btn-outline-primary">Primary</a>
-                    <a href = "#" type="button" class="btn btn-outline-secondary">Secondary</a>
-                    <a href = "#" type="button" class="btn btn-outline-success">Success</a>
-                    <a href = "#" type="button" class="btn btn-outline-danger">Danger</a>
-                </div>
-                <div id="task-memo" class="col-md-12">
-                    <div class="form-group">
-                        <label for="task-memo" class="simple-des">事项备注</label>
-                        <textarea class="form-control info-vector" rows="3">
-                            哦i点击返回港口看风景就快点发货的附近开了给的价格地方地方
-                            地方国际快递房间里豆腐干地方对方看见对方关键看给日俄国
-                            加快了进攻地方地方绝地反击的风格破i人二节课软件g
-                        </textarea>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-
-    <div id="sidebar-right">
-        <div id="task-status">
-
-        </div>
-        <div id="motto">
-
-        </div>
-    </div>
-
-
-    <div id="footer">
-
-    </div>
-    
+    <div th:replace="header::#header"></div>
+    <div th:replace="frontPage::#content-container"></div>
+    <div th:replace="sideBars::#sidebar-right"></div>
+    <div th:replace="footer::#footer"></div>
 </body>
 </html>

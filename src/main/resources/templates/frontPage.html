@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id = "content-container" class="container">
+    <div id="content" class="row">
+        <div id="content-head" class="col-md-12">
+            <div id="task-time" class="col-md-3 left">
+                今天
+            </div>
+            <div id="time-controller" class="col-md-6 btn-group" data-toggle="buttons-radio">
+                <div id="time-left-arr"><i></i></div>
+                <a href="#" class="btn btn-primary time-element">前天</a>
+                <a href="#" class="btn btn-primary time-element">昨天</a>
+                <a href="#" class="btn btn-primary time-element">今天</a>
+                <a href="#" class="btn btn-primary time-element">明天</a>
+                <a href="#" class="btn btn-primary time-element">后天</a>
+                <a id="time-right-arr"><i></i></a>
+            </div>
+        </div>
+
+        <div id="task-list" class="col-md-4 list-group pre-scrollable">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task active">
+                <div class="d-flex w-100 justify-content-between">
+                    <small class="task-time">3 days ago</small>
+                    <h5 class="mb-1">List group item heading</h5>
+                </div>
+                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                <small>Donec id elit non mi porta.</small>
+            </a>
+        </div>
+        <div id = "task-info" class="container col-md-8">
+            <div><span  class="simple-des">任务详情</span></div>
+            <div id="task-content" class="col-md-12">
+                <div class="form-group">
+                    <textarea class="form-control info-vector" rows="9">
+i哦就看见分厘卡世界各地卢浮宫
+给对方临近高考理科的fjgldfjgk 立刻就美丽的风景共i、
+哦i二鞠躬i二极管偶尔给joe
+欸哦人家给哦人er 而根据配打发打发给
+                            </textarea>
+                </div>
+            </div>
+            <div id="task-controller" class="col-md-12" th:if="${session.user!=null}">
+                <a href="?action=edit" type="button" class="btn btn-primary">编辑</a>
+                <a href="?action=finish" type="button" class="btn btn-success">完成</a>
+                <a href="?action=cancel" type="button" class="btn btn-danger">取消</a>
+                <a href="?action=delay" type="button" class="btn btn-warning">推迟</a>
+            </div>
+            <div style="display: inline"><span class="simple-des">事项备注</span></div>
+            <div id="task-memo" class="col-md-12">
+                <div class="form-group">
+                    <textarea class="form-control info-vector" rows="3">
+    哦i点击返回港口看风景就快点发货的附近开了给的价格地方地方
+    地方国际快递房间里豆腐干地方对方看见对方关键看给日俄国
+    加快了进攻地方地方绝地反击的风格破i人二节课软件g
+                        </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
