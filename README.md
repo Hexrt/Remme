@@ -23,3 +23,11 @@
 [BootStrap样式2](http://code.z01.com/v4/docs/)
 
 [MavernRepo](https://mvnrepository.com)
+
+## 抱怨
+
+刚刚发现，提交了几次，我Github的墙竟然没有被绿。
+
+啊啊啊啊，原来是邮箱设置错了，可惜了几天的记录。
+
+加油吧。QVQ
