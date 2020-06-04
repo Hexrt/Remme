@@ -2,6 +2,10 @@ package cn.ctrls.remme.controller;
 
 import cn.ctrls.remme.dto.AccessTokenDTO;
 import cn.ctrls.remme.dto.GithubUser;
+import cn.ctrls.remme.mapper.UserMapper;
+import cn.ctrls.remme.mapper.UserMetaMapper;
+import cn.ctrls.remme.model.RemmeUser;
+import cn.ctrls.remme.model.UserMeta;
 import cn.ctrls.remme.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 /***
 * @Description:    授权管理类
@@ -32,10 +40,17 @@ public class OAuthController {
     @Autowired
     private GithubProvider githubProvider;
 
+    @Resource(name = "userMapper")
+    private UserMapper userMapper;
+
+    @Resource(name = "userMetaMapper")
+    private UserMetaMapper userMetaMapper;
+
     @GetMapping("/callback")
     public String callBack(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletRequest request){
+                           HttpServletRequest request,
+                           HttpServletResponse response){
 
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
@@ -44,12 +59,34 @@ public class OAuthController {
         accessTokenDTO.setClient_secret(clientSecret);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
 //        System.out.println(accessToken);
-        GithubUser user = githubProvider.getUser(accessToken);
+        GithubUser githubUser = githubProvider.getUser(accessToken);
 //        System.out.println(user.getLogin());
-        if (user != null){
-            request.getSession().setAttribute("user",user);
+        if (githubUser != null){
+            RemmeUser remmeUser;
+            UserMeta userMeta = userMetaMapper.getUserMetaByGitHubId(githubUser.getId());
+            String token = UUID.randomUUID().toString();
+            if (userMeta!=null){
+                userMapper.updateToken(userMeta.getId(), token);
+                remmeUser = userMapper.getUserById(userMeta.getId());
+                request.getSession().setAttribute("user", remmeUser);
+                response.addCookie(new Cookie("token", token));
+                return "index";
+            }
+            remmeUser = new RemmeUser();
+            userMeta = new UserMeta();
+            userMeta.setAvatarUrl(githubUser.getAvatarUrl());
+            userMeta.setGithubId(githubUser.getId());
+            userMetaMapper.insert(userMeta);
+            userMeta = userMetaMapper.getUserMetaByGitHubId(githubUser.getId());
+            remmeUser.setId(userMeta.getId());
+            remmeUser.setName(githubUser.getLogin());
+            remmeUser.setToken(token);
+            remmeUser.setType(1);
+            userMapper.insert(remmeUser);
+            request.getSession().setAttribute("user",remmeUser);
+            response.addCookie(new Cookie("token", token));
         } else{
-
+            System.out.println("user none!");
         }
         return "index";
     }

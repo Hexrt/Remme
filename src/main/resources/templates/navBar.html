@@ -28,7 +28,7 @@
                             <a href="https://github.com/login/oauth/authorize?client_id=040211635f64ad8b289d&redirect_url=localhost:8080/callback&scope=user&state=1">登录</a>
                         </li>
                         <li th:if="${session.user!=null}">
-                            <a th:text="${session.user.getLogin()}"></a>
+                            <a th:text="${session.user.getName()}"></a>
                         </li>
                         <li class="dropdown" th:if="${session.user!=null}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的 <span class="caret"></span></a>

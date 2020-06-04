@@ -45,10 +45,10 @@ i哦就看见分厘卡世界各地卢浮宫
                 </div>
             </div>
             <div id="task-controller" class="col-md-12" th:if="${session.user!=null}">
-                <a href="?action=edit" type="button" class="btn btn-primary">编辑</a>
-                <a href="?action=finish" type="button" class="btn btn-success">完成</a>
-                <a href="?action=cancel" type="button" class="btn btn-danger">取消</a>
-                <a href="?action=delay" type="button" class="btn btn-warning">推迟</a>
+                <a href="/private/tasks?action=edit" type="button" class="btn btn-primary">编辑</a>
+                <a href="/private/tasks?action=finish" type="button" class="btn btn-success">完成</a>
+                <a href="/private/tasks?action=cancel" type="button" class="btn btn-danger">取消</a>
+                <a href="/private/tasks?action=delay" type="button" class="btn btn-warning">推迟</a>
             </div>
             <div style="display: inline"><span class="simple-des">事项备注</span></div>
             <div id="task-memo" class="col-md-12">
