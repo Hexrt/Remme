@@ -21,27 +21,24 @@
                 <a id="time-right-arr"><i></i></a>
             </div>
         </div>
+        <!--循环输出任务列表-->
+        <div id="task-list" class="col-md-4 list-group pre-scrollable" th:if="${taskList!=null}">
 
-        <div id="task-list" class="col-md-4 list-group pre-scrollable">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start task active">
+            <a th:each="task : ${taskList}" th:href="${'/?taskId='+task.id}" class="list-group-item list-group-item-action flex-column align-items-start task">
                 <div class="d-flex w-100 justify-content-between">
-                    <small class="task-time">3 days ago</small>
-                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="task-time" th:text="${task.gmtStart}"></small>
+                    <h5 class="mb-1" th:text="${task.gmtEnd}"></h5>
                 </div>
-                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                <small>Donec id elit non mi porta.</small>
+                <p class="mb-1" th:text="${task.description}"></p>
+                <small th:text="${task.memo}"></small>
             </a>
+
         </div>
         <div id = "task-info" class="container col-md-8">
             <div><span  class="simple-des">任务详情</span></div>
             <div id="task-content" class="col-md-12">
                 <div class="form-group">
-                    <textarea class="form-control info-vector" rows="9">
-i哦就看见分厘卡世界各地卢浮宫
-给对方临近高考理科的fjgldfjgk 立刻就美丽的风景共i、
-哦i二鞠躬i二极管偶尔给joe
-欸哦人家给哦人er 而根据配打发打发给
-                            </textarea>
+                    <textarea class="form-control info-vector" rows="9"  th:text="${activeTask!=null?activeTask.description:'显示错误'}"></textarea>
                 </div>
             </div>
             <div id="task-controller" class="col-md-12" th:if="${session.user!=null}">
@@ -53,11 +50,7 @@ i哦就看见分厘卡世界各地卢浮宫
             <div style="display: inline"><span class="simple-des">事项备注</span></div>
             <div id="task-memo" class="col-md-12">
                 <div class="form-group">
-                    <textarea class="form-control info-vector" rows="3">
-    哦i点击返回港口看风景就快点发货的附近开了给的价格地方地方
-    地方国际快递房间里豆腐干地方对方看见对方关键看给日俄国
-    加快了进攻地方地方绝地反击的风格破i人二节课软件g
-                        </textarea>
+                    <textarea class="form-control info-vector" rows="3"  th:text="${activeTask!=null?activeTask.memo:'显示错误'}"></textarea>
                 </div>
             </div>
         </div>

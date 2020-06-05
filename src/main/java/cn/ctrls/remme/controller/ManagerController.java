@@ -75,8 +75,8 @@ public class ManagerController {
         Integer owner = remmeUser.getType()==0?-1:remmeUser.getId();
         RemmeTask remmeTask = new RemmeTask();
         remmeTask.setDescription(description);
-        remmeTask.setGmtStartTime(gmtStart);
-        remmeTask.setGmtEndTime(gmtEnd);
+        remmeTask.setGmtStart(gmtStart);
+        remmeTask.setGmtEnd(gmtEnd);
         remmeTask.setMemo(memo);
         remmeTask.setOwner(owner);
         remmeTask.setType(type);

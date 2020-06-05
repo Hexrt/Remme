@@ -41,20 +41,20 @@ public class RemmeTask {
         this.memo = memo;
     }
 
-    public Long getGmtStartTime() {
+    public Long getGmtStart() {
         return gmtStart;
     }
 
-    public void setGmtStartTime(Long gmtStartTime) {
-        this.gmtStart = gmtStartTime;
+    public void setGmtStart(Long gmtStart) {
+        this.gmtStart = gmtStart;
     }
 
-    public Long getGmtEndTime() {
+    public Long getGmtEnd() {
         return gmtEnd;
     }
 
-    public void setGmtEndTime(Long gmtEndTime) {
-        this.gmtEnd = gmtEndTime;
+    public void setGmtEnd(Long gmtEnd) {
+        this.gmtEnd = gmtEnd;
     }
 
     public Integer getOwner() {

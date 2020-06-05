@@ -31,30 +31,33 @@
 
 <div class="container">
     <div class="row">
-        <form action="/manager/publish" method="post">
-            <span>任务详细信息</span>
-            <div id="description">
-                <textarea name="description" style="display:none;"></textarea>
-            </div>
-            <span>备注</span>
-            <div id="memo">
-                <textarea name="memo" style="display:none;"></textarea>
-            </div>
-            <div class="form-row">
-                <div class="col">
-                    <input name = "gmtStart" type="text" class="form-control" placeholder="开始时间-格林威治时间戳">
+        <div class="col-md-12">
+            <form action="/manager/publish" method="post" style="height: 500px;">
+                <span>任务详细信息</span>
+                <div id="description">
+                    <textarea name="description" rows="9"></textarea>
                 </div>
-                -
-                <div class="col">
-                    <input name = "gmtEnd" type="text" class="form-control" placeholder="截止时间-格林威治时间戳">
+                <span>备注</span>
+                <div id="memo">
+                    <textarea name="memo" rows="5"></textarea>
                 </div>
-                <div class="col">
-                    <input name = "type" type="text" class="form-control" placeholder="类型">
+                <div class="form-row">
+                    <div class="col">
+                        <input name = "gmtStart" type="text" class="form-control" placeholder="开始时间-格林威治时间戳">
+                    </div>
+                    -
+                    <div class="col">
+                        <input name = "gmtEnd" type="text" class="form-control" placeholder="截止时间-格林威治时间戳">
+                    </div>
+                    <div class="col">
+                        <input name = "type" type="text" class="form-control" placeholder="类型">
+                    </div>
                 </div>
-            </div>
 
-            <button class="btn btn-primary" type="submit">发布</button>
-        </form>
+                <button class="btn btn-primary" type="submit">发布</button>
+            </form>
+        </div>
+
     </div>
 </div>
 
