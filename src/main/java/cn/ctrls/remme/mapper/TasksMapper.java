@@ -4,6 +4,7 @@ import cn.ctrls.remme.model.RemmeTask;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -34,4 +35,6 @@ public interface TasksMapper {
     @Select("SELECT * FROM tasks WHERE owner=-1")
     ArrayList<RemmeTask> getComTask();
 
+    @Update("UPDATE tasks SET type=#{type} WHERE id=#{id}")
+    void modifyTypeById(Integer type,Integer id);
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -34,7 +34,7 @@
             </a>
 
         </div>
-        <div id = "task-info" class="container col-md-8">
+        <div id = "task-info" class="container col-md-8" th:if="${activeTask!=null}">
             <div><span  class="simple-des">任务详情</span></div>
             <div id="task-content" class="col-md-12">
                 <div class="form-group">
@@ -42,10 +42,10 @@
                 </div>
             </div>
             <div id="task-controller" class="col-md-12" th:if="${session.user!=null}">
-                <a href="/private/tasks?action=edit" type="button" class="btn btn-primary">编辑</a>
-                <a href="/private/tasks?action=finish" type="button" class="btn btn-success">完成</a>
-                <a href="/private/tasks?action=cancel" type="button" class="btn btn-danger">取消</a>
-                <a href="/private/tasks?action=delay" type="button" class="btn btn-warning">推迟</a>
+                <a type="button" class="btn btn-primary" th:href="'/private/tasks?action=edit&id='+${activeTask.id}">编辑</a>
+                <a type="button" class="btn btn-success" th:href="'/private/tasks?action=finish&id='+${activeTask.id}">完成</a>
+                <a type="button" class="btn btn-danger" th:href="'/private/tasks?action=cancel&id='+${activeTask.id}">取消</a>
+                <a type="button" class="btn btn-warning" th:href="'/private/tasks?action=delay&id='+${activeTask.id}">推迟</a>
             </div>
             <div style="display: inline"><span class="simple-des">事项备注</span></div>
             <div id="task-memo" class="col-md-12">

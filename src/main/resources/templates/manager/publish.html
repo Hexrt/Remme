@@ -35,24 +35,31 @@
     <div class="row">
         <div class="col-md-12">
             <form action="/manager/publish" method="post" style="height: 500px;">
-                <span>任务详细信息</span>
                 <div id="description">
+                    <label>任务详细信息</label>
                     <textarea name="description" rows="9"></textarea>
                 </div>
-                <span>备注</span>
                 <div id="memo">
+                    <label>备注</label>
                     <textarea name="memo" rows="5"></textarea>
                 </div>
                 <div class="form-row">
-                    <div class="col">
+                    <div class="form-group col-md-5">
+                        <label>开始时间</label>
                         <input name = "gmtStart" type="text" class="form-control" placeholder="开始时间-格林威治时间戳">
                     </div>
-                    -
-                    <div class="col">
+                    <div class="form-group col-md-5">
+                        <label>截止时间</label>
                         <input name = "gmtEnd" type="text" class="form-control" placeholder="截止时间-格林威治时间戳">
                     </div>
-                    <div class="col">
-                        <input name = "type" type="text" class="form-control" placeholder="类型">
+                    <div class="form-group col-md-2">
+                        <label>类型</label>
+                        <select name = "type" class="form-control">
+                            <option selected value="1">待完成</option>
+                            <option value="2">完成</option>
+                            <option value="3">取消</option>
+                            <option value="4">推迟</option>
+                        </select>
                     </div>
                 </div>
 
