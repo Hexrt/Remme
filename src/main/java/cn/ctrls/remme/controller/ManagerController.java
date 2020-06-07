@@ -31,6 +31,7 @@ public class ManagerController {
      */
     @GetMapping("/manager")
     public String Manager(){
+
         return "/manager/index";
     }
 
@@ -40,6 +41,7 @@ public class ManagerController {
      */
     @GetMapping("/manager/publish")
     public String Publish(){
+
         return "/manager/publish";
     }
 
@@ -49,6 +51,7 @@ public class ManagerController {
      */
     @GetMapping("/manager/user")
     public String User(){
+
         return "/manager/user";
     }
 
@@ -58,6 +61,7 @@ public class ManagerController {
      */
     @GetMapping("/manager/setting")
     public String Setting(){
+
         return "/manager/setting";
     }
 
@@ -69,7 +73,6 @@ public class ManagerController {
             @RequestParam("gmtStart") Long gmtStart,
             @RequestParam("gmtEnd") Long gmtEnd,
             HttpServletRequest request){
-        if (!cookieUtil.checkLogin(request))return"/manager/publish";//如果出现问题，没有用户数据，则取消发布信息
         RemmeUser remmeUser = (RemmeUser)request.getSession().getAttribute("user");
         //如果是管理员则是公共任务，个人用户就是他自己的私有任务
         Integer owner = remmeUser.getType()==0?-1:remmeUser.getId();
@@ -80,6 +83,7 @@ public class ManagerController {
         remmeTask.setMemo(memo);
         remmeTask.setOwner(owner);
         remmeTask.setType(type);
+        //发布任务
         tasksMapper.publish(remmeTask);
         return "/manager/publish";
     }

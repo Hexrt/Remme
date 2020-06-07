@@ -20,7 +20,7 @@ public class CookieUtil {
      * @param name
      * @return
      */
-    private Cookie getCookieByName(HttpServletRequest request,String name){
+    public Cookie getCookieByName(HttpServletRequest request,String name){
         Cookie[] cookies = request.getCookies();
         if (cookies==null)return null;
         for (Cookie cookie : cookies){
@@ -32,18 +32,17 @@ public class CookieUtil {
     }
 
     /**
-     * 检验是否登录
+     * 获取Token
      * @param request
      * @return
      */
-    public boolean checkLogin(HttpServletRequest request){
-        //检验Cookie中的Token是否在数据库中，是否最新
+    public String getToken(HttpServletRequest request){
         Cookie token = getCookieByName(request,"token");
-        if (token ==null)return false;
-        RemmeUser remmeUser = userMapper.getUserByToken(token.getValue());
-        if (remmeUser==null)return false;
-        request.getSession().setAttribute("user", remmeUser);
-        return true;
+        if (token == null){
+            return null;
+        }else{
+            return token.getValue();
+        }
     }
 
     /**

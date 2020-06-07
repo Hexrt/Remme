@@ -34,7 +34,6 @@ public class IndexController {
     public String index(HttpServletRequest httpServletRequest,
                         @RequestParam(name = "action", required = false) String action,
                         @RequestParam(name = "taskId",required = false) Integer taskId){
-        cookieUtil.checkLogin(httpServletRequest);
         //开始获取任务列表（公共任务）type = -1
         ArrayList<RemmeTask> taskList = tasksMapper.getComTask();
         //加载任务列表到请求中
