@@ -10,6 +10,7 @@ body{
     /*background-color: gray;*/
     height: 580px;
     padding-left: 2%;
+    padding-right: 2%;
 }
 
 #content-head{
@@ -27,8 +28,13 @@ body{
 }
 
 #task-list{
-    /*background-color: green;*/
-    max-height: 86%;
+    height: 86%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#task-list-content{
+    max-height: 90%;
 }
 
 #task-content{

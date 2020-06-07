@@ -23,18 +23,27 @@
                 </div>
             </div>
         </div>
-        <!--循环输出任务列表-->
-        <div id="task-list" class="col-md-4 list-group pre-scrollable" th:if="${taskList!=null}">
-
-            <a th:each="task : ${taskList}" th:href="${'/?taskId='+task.id}" class="list-group-item list-group-item-action flex-column align-items-start task">
-                <div class="d-flex w-100 justify-content-between">
-                    <small class="task-time" th:text="${task.gmtStart}"></small>
-                    <h5 class="mb-1" th:text="${task.gmtEnd}"></h5>
+        <!--任务列表-->
+        <div id = "task-list" class = "col-md-4 ">
+            <!--显示名称-->
+            <div class="card">
+                <div class="card-header" style="font-size: x-large;text-align: center;">
+                    任务列表
                 </div>
-                <p class="mb-1" th:text="${task.description}"></p>
-                <small th:text="${task.memo}"></small>
-            </a>
+            </div>
+            <!--循环输出任务列表-->
+            <div id="task-list-content" class="list-group pre-scrollable" th:if="${taskList!=null}">
 
+                <a th:each="task : ${taskList}" th:href="${'/?taskId='+task.id}" class="list-group-item list-group-item-action flex-column align-items-start task "th:classappend="${activeTask!=null&&activeTask.id==task.id}?'active':''">
+                    <div class="d-flex w-100 justify-content-between">
+                        <small class="task-time" th:text="${task.gmtStart}"></small>
+                        <h5 class="mb-1" th:text="${task.gmtEnd}"></h5>
+                    </div>
+                    <p class="mb-1" th:text="${task.description}"></p>
+                    <small th:text="${task.memo}"></small>
+                </a>
+
+            </div>
         </div>
         <div id = "task-info" class="container col-md-8" th:if="${activeTask!=null}">
             <div><span  class="simple-des">任务详情</span></div>

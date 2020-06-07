@@ -15,23 +15,52 @@ public class CookieUtil {
     @Resource(name="userMapper")
     private UserMapper userMapper;
 
-
-    public boolean checkLogin(HttpServletRequest request){
-        //检验Cookie中的Token是否在数据库中，是否最新
+    /**
+     * 通过名字获取值
+     * @param name
+     * @return
+     */
+    private Cookie getCookieByName(HttpServletRequest request,String name){
         Cookie[] cookies = request.getCookies();
-        if (cookies!=null){
-            for (Cookie cookie : cookies){
-                if (cookie.getName().equals("token")){
-                    String token = cookie.getValue();
-                    RemmeUser remmeUser = userMapper.getUserByToken(token);
-                    if (remmeUser!=null){
-                        request.getSession().setAttribute("user", remmeUser);
-                        return true;
-                    }
-                    return false;
-                }
+        if (cookies==null)return null;
+        for (Cookie cookie : cookies){
+            if (cookie.getName().equals(name)){
+                return cookie;
             }
         }
-        return false;
+        return null;
+    }
+
+    /**
+     * 检验是否登录
+     * @param request
+     * @return
+     */
+    public boolean checkLogin(HttpServletRequest request){
+        //检验Cookie中的Token是否在数据库中，是否最新
+        Cookie token = getCookieByName(request,"token");
+        if (token ==null)return false;
+        RemmeUser remmeUser = userMapper.getUserByToken(token.getValue());
+        if (remmeUser==null)return false;
+        request.getSession().setAttribute("user", remmeUser);
+        return true;
+    }
+
+    /**
+     * 获取背景的id
+     * @param request
+     * @return
+     */
+    public Integer getWrapperId(HttpServletRequest request){
+        Integer id = null;
+        Cookie wrapperId = getCookieByName(request,"wrapperId");
+        if (wrapperId==null)return null;
+        //防止恶意参数进入
+        try{
+            id = Integer.parseInt(wrapperId.getValue());
+        }catch (Exception e){
+            id = null;
+        }
+        return id;
     }
 }
