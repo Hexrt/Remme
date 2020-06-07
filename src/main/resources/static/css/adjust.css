@@ -2,6 +2,10 @@ body{
     /*background-color: whitesmoke;*/
 }
 
+*:hover{
+    color: pink;
+}
+
 #content{
     /*background-color: gray;*/
     height: 580px;
@@ -18,6 +22,8 @@ body{
 
 #time-controller{
     /*background-color: rebeccapurple;*/
+    margin: 0 25%;
+    border-radius: 3px;
 }
 
 #task-list{
@@ -35,9 +41,7 @@ body{
 
 /**特殊调整**/
 /*这是导航栏目*/
-.time-controller{
 
-}
 
 /*箭头*/
 div[id$="arr"]{
@@ -53,17 +57,24 @@ div[id$="arr"]:hover{
 #time-left-arr{
     border-radius: 50% 0 0 50%;
     float: left;
+    margin-right: 2px;
 }
 #time-right-arr{
     border-radius: 0 50% 50% 0;
     float: right;
-    margin-right: 1px;
+    margin-left: 2px;
 }
-#time-controller:hover .time-left-arr{
+#time-controller:hover #time-left-arr{
     display: block;
 }
-#time-controller:hover .time-right-arr{
+#time-controller:hover #time-right-arr{
     display: block;
+}
+#time-controller a:hover{
+    color: pink;
+}
+#time-controller a{
+    border-left: 2px;
 }
 
 /**任务列表**/
@@ -118,4 +129,15 @@ div[id$="arr"]:hover{
 /****/
 #task-info{
     height: 86%;
+}
+
+#wrapper iframe{
+    /*手动放置于最底层-1
+    **固定显示*/
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
