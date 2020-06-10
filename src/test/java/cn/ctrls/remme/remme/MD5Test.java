@@ -9,7 +9,7 @@ import java.security.NoSuchProviderException;
 
 @SpringBootTest
 public class MD5Test {
-    @Test
+//    @Test
     public void testMD5() throws NoSuchProviderException, NoSuchAlgorithmException {
         String test = "admin";
 //        MessageDigest.getInstance(test,"SHA-256");
