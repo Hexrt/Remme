@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository(value = "userMapper")
 public interface UserMapper {
-    @Insert("INSERT INTO users (id,name,type,token) VALUES (#{id},#{name},#{type},#{token})")
+    @Insert("INSERT INTO users (id,name,type,token,password) VALUES (#{id},#{name},#{type},#{token},#{password})")
     void insert(RemmeUser remmeUser);
 
     @Update("UPDATE users SET token=#{token} WHERE id=#{id}")

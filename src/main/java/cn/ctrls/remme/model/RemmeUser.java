@@ -5,7 +5,7 @@ public class RemmeUser {
     private Integer id;
     private Integer type;
     private String token;
-
+    private String password;
 
 
     public String getName() {
@@ -41,5 +41,11 @@ public class RemmeUser {
     }
 
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

@@ -1,19 +1,33 @@
 package cn.ctrls.remme.controller;
 
 import cn.ctrls.remme.mapper.TasksMapper;
+import cn.ctrls.remme.mapper.UserMapper;
+import cn.ctrls.remme.mapper.UserMetaMapper;
+import cn.ctrls.remme.model.RemmeUser;
+import cn.ctrls.remme.model.UserMeta;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sun.security.util.Password;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 @Controller
 public class PrivateController {
 
+    @Resource(name = "userMapper")
+    private UserMapper userMapper;
+
+    @Resource(name = "userMetaMapper")
+    private UserMetaMapper userMetaMapper;
+
     @Resource(name = "tasksMapper")
     private TasksMapper tasksMapper;
-
 
     @GetMapping("/private/message")
     public String privateMessage(){
@@ -57,4 +71,30 @@ public class PrivateController {
         return "redirect:/";
     }
 
+
+    @GetMapping("/private/login")
+    private String privateLoginPage(){
+        return "/private/login";
+    }
+
+    @PostMapping("/private/login")
+    private String privateLogin(HttpServletRequest request,
+                                HttpServletResponse response,
+                                @RequestParam(name = "email", required = false) String emailUrl,
+                                @RequestParam(name = "password", required = false) String password){
+        if (emailUrl==null||password==null) return"/index";
+        UserMeta userMeta = userMetaMapper.getUserMetaByEmailUrl(emailUrl);
+        if (userMeta==null)return"/index";
+        RemmeUser user = userMapper.getUserById(userMeta.getId());
+        if (user==null)return"/index";
+        if (user.getPassword().equals(password)){
+            request.getSession().setAttribute("user", user);
+            String token = UUID.randomUUID().toString();
+            userMapper.updateToken(user.getId(),token);//更新token
+            Cookie tkCookie = new Cookie("token", token);
+            tkCookie.setPath("/");
+            response.addCookie(tkCookie);
+        }
+        return"/index";
+    }
 }

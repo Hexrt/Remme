@@ -2,6 +2,7 @@ package cn.ctrls.remme.model;
 
 public class UserMeta {
     private String avatarUrl;
+    private String emailUrl;
     private Integer githubId;
     private Integer id;
 
@@ -28,4 +29,10 @@ public class UserMeta {
         this.githubId = githubId;
     }
 
+    public String getEmailUrl() {
+        return emailUrl;
+    }
+    public void setEmailUrl(String emailUrl) {
+        this.emailUrl = emailUrl;
+    }
 }
